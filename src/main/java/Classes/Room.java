@@ -19,12 +19,20 @@ public class Room {
     }
 
     //Functions
-    public void bookRoom(LocalDate day){
-
+    public void bookRoom(LocalDate day, Reservation reservation){
+        reservations.put(day, reservation);
     }
 
-    //Getters/Setters
+    //Getters
+    public int getCapacity() {
+        return capacity;
+    }
 
+    public int getRoomNumber() {
+        return roomNumber;
+    }
 
-
+    public Map<LocalDate, Reservation> getReservations() {
+        return reservations;
+    }
 }

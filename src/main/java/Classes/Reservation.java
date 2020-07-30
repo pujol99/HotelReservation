@@ -16,9 +16,11 @@ public class Reservation {
         this.room = room;
         this.client = client;
 
-        for(LocalDate day : getDatesBetween(from, to)){
-            room.bookRoom(day);
-        }
+        //for(LocalDate day : getDatesBetween(from, to)){
+            //room.bookRoom(day, this);
+        //}
+
+        client.setReservation(this);
     }
 
     private List<LocalDate> getDatesBetween(LocalDate from, LocalDate to){
@@ -29,5 +31,23 @@ public class Reservation {
                 .collect(Collectors.toList());
 
         return dates;
+    }
+
+    //getters
+
+    public LocalDate getFrom() {
+        return from;
+    }
+
+    public LocalDate getTo() {
+        return to;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 }
