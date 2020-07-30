@@ -1,14 +1,14 @@
 package Classes;
 
+import java.time.LocalDate;
+import java.util.*;
+
 public class Room {
 
     //Variables
     private int capacity;
     private int roomNumber;
-    private boolean occupied;
-    /*
-        Instead of a boolean use a structure to know which days will be occupied
-     */
+    private Map<LocalDate, Reservation> reservations;
 
     //Constructor
     public Room(){}
@@ -19,7 +19,9 @@ public class Room {
     }
 
     //Functions
-    //public void bookRoom
+    public void bookRoom(LocalDate day){
+
+    }
 
     //Getters/Setters
 
