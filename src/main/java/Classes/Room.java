@@ -8,7 +8,7 @@ public class Room {
     //Variables
     private int capacity;
     private int roomNumber;
-    private Map<LocalDate, Reservation> reservations;
+    private Map<LocalDate, Reservation> reservations = new HashMap<>();
 
     //Constructor
     public Room(){}
