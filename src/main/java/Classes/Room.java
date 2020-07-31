@@ -23,6 +23,16 @@ public class Room {
         reservations.put(day, reservation);
     }
 
+    public boolean isBooked(LocalDate day){
+        return reservations.containsKey(day);
+    }
+
+    public void cancelBooking(LocalDate day){
+        reservations.remove(day);
+    }
+
+
+
     //Getters
     public int getCapacity() {
         return capacity;

@@ -13,6 +13,6 @@ public class Main {
 
         Reservation reservation = new Reservation(LocalDate.now(), LocalDate.now().plusDays(4), testClient, testRoom);
 
-        System.out.println(testClient.getReservation().getRoom().getRoomNumber());
+        System.out.println(testRoom.isBooked(LocalDate.now().plusDays(5)));
     }
 }

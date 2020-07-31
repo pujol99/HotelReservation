@@ -3,7 +3,7 @@ package Classes;
 import java.time.LocalDate;
 
 public class Client {
-    private String[] contactInfo;
+    private ContactInfo contactInfo;
     private int id;
     private Reservation reservation;
 
@@ -11,11 +11,11 @@ public class Client {
         this.id = id;
     }
 
-    public String[] getContactInfo() {
+    public ContactInfo getContactInfo() {
         return contactInfo;
     }
 
-    public void setContactInfo(String[] contactInfo) {
+    public void setContactInfo(ContactInfo contactInfo) {
         this.contactInfo = contactInfo;
     }
 

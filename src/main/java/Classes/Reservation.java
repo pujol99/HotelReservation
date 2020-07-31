@@ -16,9 +16,8 @@ public class Reservation {
         this.room = room;
         this.client = client;
 
-        for(LocalDate day : getDatesBetween(from, to)){
+        for(LocalDate day : getDatesBetween(from, to))
             room.bookRoom(day, this);
-        }
 
         client.setReservation(this);
     }
@@ -33,8 +32,9 @@ public class Reservation {
         return dates;
     }
 
-    //getters
 
+
+    //getters
     public LocalDate getFrom() {
         return from;
     }
