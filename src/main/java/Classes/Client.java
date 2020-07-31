@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class Client {
     private ContactInfo contactInfo;
-    private int id;
     private Reservation reservation;
+    private int groupSize;
 
-    public Client(int id){
-        this.id = id;
+    public Client(int groupSize){
+        this.groupSize = groupSize;
     }
 
     public ContactInfo getContactInfo() {
@@ -19,8 +19,8 @@ public class Client {
         this.contactInfo = contactInfo;
     }
 
-    public int getId() {
-        return id;
+    public int getGroupSize(){
+        return groupSize;
     }
 
     public Reservation getReservation() {

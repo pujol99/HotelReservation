@@ -31,7 +31,15 @@ public class Room {
         reservations.remove(day);
     }
 
+    public boolean currentlyBooked(){
+        return reservations.containsKey(LocalDate.now());
+    }
 
+    public Client currentClient(){
+        if(currentlyBooked() == true)
+            return reservations.get(LocalDate.now()).getClient();
+        return null;
+    }
 
     //Getters
     public int getCapacity() {
