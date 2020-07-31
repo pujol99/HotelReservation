@@ -6,9 +6,11 @@ public class Client {
     private ContactInfo contactInfo;
     private Reservation reservation;
     private int groupSize;
+    private boolean urgent;
 
-    public Client(int groupSize){
+    public Client(int groupSize, boolean urgent){
         this.groupSize = groupSize;
+        this.urgent = urgent;
     }
 
     public ContactInfo getContactInfo() {
@@ -21,6 +23,10 @@ public class Client {
 
     public int getGroupSize(){
         return groupSize;
+    }
+
+    public boolean isUrgent(){
+        return urgent;
     }
 
     public Reservation getReservation() {

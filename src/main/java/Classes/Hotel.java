@@ -8,6 +8,7 @@ public class Hotel {
     private List<Client> clients;
     private List<Reservation> reservations;
     private Random rand = new Random();
+    public static int MAX_CAPACITY = 6;
 
     public Hotel(int roomSize){
         rooms = new ArrayList<>();
@@ -25,7 +26,7 @@ public class Hotel {
 
     public Room bookRoom(Client client, LocalDate from, LocalDate to){
         //make reservation for client with no reservation
-        Room room = getHotelRoom(client.getGroupSize(), from, to);
+        Room room = getHotelRoom(client.getGroupSize(), from, to, client.isUrgent());
         if(room == null)
             return null;
         client.setReservation(new Reservation(from, to, client, room));
@@ -38,13 +39,26 @@ public class Hotel {
 
     }
 
-    public Room getHotelRoom(int capacity, LocalDate from, LocalDate to){
-        //TODO: not if there is someone now --> will be someone in the booking days
+    public Room getHotelRoom(int capacity, LocalDate from, LocalDate to, boolean urgent){
         for(Room room : rooms){
             if(room.getCapacity() == capacity && room.isFree(from, to))
                 return room;
         }
+        if(urgent && capacity <= MAX_CAPACITY)
+            return getHotelRoom(capacity+1, from, to, true);
         return null;
+    }
+
+    public void automateSystem(int capacity, int from, int to, String name){
+        Client me = new Client(capacity, true);
+        ContactInfo contactInfo = new ContactInfo(
+                "",
+                name,
+                "",
+                "");
+        me.setContactInfo(contactInfo);
+
+        bookRoom(me, LocalDate.now().plusDays(from), LocalDate.now().plusDays(to));
     }
 
     public void showRooms(){

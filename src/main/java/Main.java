@@ -8,27 +8,18 @@ public class Main {
 
         Hotel myHotel = new Hotel(5);
 
-        Client me = new Client(3);
-        ContactInfo contactInfo = new ContactInfo(
-                "743578357",
-                "Alex Pujol Comet",
-                "08027",
-                "244X");
-        me.setContactInfo(contactInfo);
+        myHotel.automateSystem(3, 0, 4, "Alex");
+        myHotel.automateSystem(3, 1, 3, "Rick");
+        myHotel.automateSystem(3, 5, 7, "John");
 
-        Client me2 = new Client(3);
-        ContactInfo contactInfo2 = new ContactInfo(
-                "743578357",
-                "Elsa Pujol Comet",
-                "08027",
-                "244X");
-        me2.setContactInfo(contactInfo2);
-
-        Room room = myHotel.bookRoom(me, LocalDate.now(), LocalDate.now().plusDays(3));
-        Room room2 = myHotel.bookRoom(me2, LocalDate.now().plusDays(5), LocalDate.now().plusDays(8));
-
-        if(room != null)
+        for(Room room : myHotel.getRooms()){
+            System.out.println("------------------------------");
+            System.out.println("\tCapacity: " + room.getCapacity() + " | Id: " + room.getRoomNumber());
             room.showNextDays(10);
+
+        }
     }
+
+
 
 }
