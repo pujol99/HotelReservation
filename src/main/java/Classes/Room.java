@@ -12,18 +12,19 @@ public class Room {
     private int capacity;
     private int roomNumber;
     private Map<LocalDate, Reservation> reservations = new HashMap<>();
+    private RoomType type;
 
     //Constructor
-    public Room(){}
-
-    public Room(int capacity, int roomNumber){
+    public Room(int capacity, int roomNumber, RoomType type){
         this.roomNumber = roomNumber;
         this.capacity = capacity;
+        this.type = type;
     }
 
     //Functions
-    public void bookRoom(LocalDate day, Reservation reservation){
-        reservations.put(day, reservation);
+    public void bookRoom(LocalDate from, LocalDate to, Reservation reservation){
+        for(LocalDate day : Utils.getDatesBetween(from, to))
+            reservations.put(day, reservation);
     }
 
     public boolean isBooked(LocalDate day){
@@ -57,7 +58,7 @@ public class Room {
     }
 
     public boolean isFree(LocalDate from, LocalDate to){
-        List<LocalDate> days = getDatesBetween(from, to);
+        List<LocalDate> days = Utils.getDatesBetween(from, to);
         for(LocalDate day : days){
             if(isBooked(day))
                 return false;
@@ -65,19 +66,13 @@ public class Room {
         return true;
     }
 
-    private List<LocalDate> getDatesBetween(LocalDate from, LocalDate to){
-        long numOfDays = ChronoUnit.DAYS.between(from, to);
-
-        List<LocalDate> dates = Stream.iterate(from, date -> date.plusDays(1))
-                .limit(numOfDays)
-                .collect(Collectors.toList());
-
-        return dates;
-    }
-
     //Getters
     public int getCapacity() {
         return capacity;
+    }
+
+    public RoomType getType(){
+        return type;
     }
 
     public int getRoomNumber() {

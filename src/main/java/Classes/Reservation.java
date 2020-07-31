@@ -1,35 +1,40 @@
 package Classes;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.*;
 
 public class Reservation {
     private LocalDate from, to;
     private Client client;
     private Room room;
+    private double price;
 
+    //Constructor
     public Reservation(LocalDate from, LocalDate to, Client client, Room room){
         this.from = from;
         this.to = to;
         this.room = room;
         this.client = client;
 
-        for(LocalDate day : getDatesBetween(from, to))
-            room.bookRoom(day, this);
+        room.bookRoom(from, to, this);
 
         client.setReservation(this);
     }
 
-    private List<LocalDate> getDatesBetween(LocalDate from, LocalDate to){
-        long numOfDays = ChronoUnit.DAYS.between(from, to);
+    //Functions
+    public double reservationPricing(){
+        int days = from.compareTo(to);
+        return 0.f;
+    }
 
-        List<LocalDate> dates = Stream.iterate(from, date -> date.plusDays(1))
-                .limit(numOfDays)
-                .collect(Collectors.toList());
+    public void computePrice(){
+        price = Pricing.computeFinalPrice(this);
+    }
 
-        return dates;
+    public String toString(){
+        return "Reservation from: " + client.getContactInfo().getFullName() + "\n" +
+        "From: " + from.toString() + " to: " + to.toString() + "\n" +
+        "With a price of: " + price + "\n" +
+        "For room: " + room.getRoomNumber() + "\n";
     }
 
     //getters
@@ -47,5 +52,9 @@ public class Reservation {
 
     public Room getRoom() {
         return room;
+    }
+
+    public double getPrice(){
+        return price;
     }
 }

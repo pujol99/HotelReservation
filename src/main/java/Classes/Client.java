@@ -1,7 +1,5 @@
 package Classes;
 
-import java.time.LocalDate;
-
 public class Client {
     private ContactInfo contactInfo;
     private Reservation reservation;
@@ -35,5 +33,6 @@ public class Client {
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
+        this.reservation.computePrice();
     }
 }

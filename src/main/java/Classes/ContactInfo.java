@@ -5,12 +5,14 @@ public class ContactInfo {
     private String fullName;
     private String direction;
     private String identification;
+    private String email;
 
-    public ContactInfo(String phoneNumber, String fullName, String direction, String identification) {
+    public ContactInfo(String phoneNumber, String fullName, String direction, String identification, String email) {
         this.phoneNumber = phoneNumber;
         this.fullName = fullName;
         this.direction = direction;
         this.identification = identification;
+        this.email = email;
     }
 
     public String getPhoneNumber() {

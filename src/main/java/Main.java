@@ -16,8 +16,9 @@ public class Main {
             System.out.println("------------------------------");
             System.out.println("\tCapacity: " + room.getCapacity() + " | Id: " + room.getRoomNumber());
             room.showNextDays(10);
-
         }
+
+        System.out.println(myHotel.getReservations().get(0).toString());
     }
 
 

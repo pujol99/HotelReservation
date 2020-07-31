@@ -7,8 +7,11 @@ public class Hotel {
     private List<Room> rooms;
     private List<Client> clients;
     private List<Reservation> reservations;
-    private Random rand = new Random();
     public static int MAX_CAPACITY = 6;
+    public static int MIN_CAPACITY = 2;
+    private enum RoomType {BASIC, KITCHEN, SUPERIOR};
+
+    private Random rand = new Random();
 
     public Hotel(int roomSize){
         rooms = new ArrayList<>();
@@ -29,13 +32,15 @@ public class Hotel {
         Room room = getHotelRoom(client.getGroupSize(), from, to, client.isUrgent());
         if(room == null)
             return null;
-        client.setReservation(new Reservation(from, to, client, room));
+        Reservation r = new Reservation(from, to, client, room);
+        client.setReservation(r);
+        reservations.add(r);
         return room;
     }
 
     public void createRooms(int roomSize){
         for(int i = 0; i < roomSize; i++)
-            rooms.add(new Room(rand.nextInt(4)+2, i));
+            rooms.add(new Room(rand.nextInt(MAX_CAPACITY-MIN_CAPACITY+1)+2, i, Classes.RoomType.BASIC));
 
     }
 
@@ -50,15 +55,17 @@ public class Hotel {
     }
 
     public void automateSystem(int capacity, int from, int to, String name){
-        Client me = new Client(capacity, true);
+        Client c = new Client(capacity, true);
         ContactInfo contactInfo = new ContactInfo(
                 "",
                 name,
                 "",
+                "",
                 "");
-        me.setContactInfo(contactInfo);
+        c.setContactInfo(contactInfo);
+        clients.add(c);
 
-        bookRoom(me, LocalDate.now().plusDays(from), LocalDate.now().plusDays(to));
+        bookRoom(c, LocalDate.now().plusDays(from), LocalDate.now().plusDays(to));
     }
 
     public void showRooms(){
