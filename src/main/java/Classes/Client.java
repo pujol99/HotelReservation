@@ -1,5 +1,10 @@
 package Classes;
 
+import Utils.Utils;
+
+import java.time.LocalDate;
+import java.util.*;
+
 public class Client {
     private ContactInfo contactInfo;
     private Reservation reservation;
@@ -9,6 +14,13 @@ public class Client {
     public Client(int groupSize, boolean urgent){
         this.groupSize = groupSize;
         this.urgent = urgent;
+    }
+
+    public void cancelBooking(){
+        Room room = reservation.getRoom();
+        List<LocalDate> days = Utils.getDatesBetween(reservation.getFrom(), reservation.getTo());
+        for(LocalDate day : days)
+            room.cancelBooking(day);
     }
 
     public ContactInfo getContactInfo() {
@@ -33,6 +45,5 @@ public class Client {
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
-        this.reservation.computePrice();
     }
 }

@@ -1,5 +1,7 @@
 package Classes;
 
+import Utils.Pricing;
+
 import java.time.LocalDate;
 
 public class Reservation {
@@ -27,20 +29,19 @@ public class Reservation {
     }
 
     public void computePrice(){
+
         price = Pricing.computeFinalPrice(this);
     }
 
     public String toString(){
         return "Reservation from: " + client.getContactInfo().getFullName() + "\n" +
-        "From: " + from.toString() + " to: " + to.toString() + "\n" +
-        "With a price of: " + price + "\n" +
-        "For room: " + room.getRoomNumber() + "\n";
+            "From: " + from.toString() + " to: " + to.toString() + "\n" +
+            "With a price of: " + price + "\n" +
+            "For room: " + room.getRoomNumber() + "\n";
     }
 
     //getters
-    public LocalDate getFrom() {
-        return from;
-    }
+    public LocalDate getFrom() { return from; }
 
     public LocalDate getTo() {
         return to;

@@ -1,10 +1,10 @@
 package Classes;
 
+import Enums.RoomType;
+import Utils.Utils;
+
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Room {
 
@@ -27,7 +27,7 @@ public class Room {
             reservations.put(day, reservation);
     }
 
-    public boolean isBooked(LocalDate day){
+    public boolean isBookedIn(LocalDate day){
         return reservations.containsKey(day);
     }
 
@@ -35,12 +35,8 @@ public class Room {
         reservations.remove(day);
     }
 
-    public boolean currentlyBooked(){
-        return reservations.containsKey(LocalDate.now());
-    }
-
     public Client currentClient(){
-        if(currentlyBooked() == true)
+        if(isBookedIn(LocalDate.now()) == true)
             return reservations.get(LocalDate.now()).getClient();
         return null;
     }
@@ -49,7 +45,7 @@ public class Room {
         for(int i = 0; i < nDays; i++){
             LocalDate day = LocalDate.now().plusDays(i);
             System.out.print(day.toString() + ": ");
-            if(isBooked(day)){
+            if(isBookedIn(day)){
                 System.out.println(reservations.get(day).getClient().getContactInfo().getFullName());
             }else{
                 System.out.println("Free");
@@ -60,7 +56,7 @@ public class Room {
     public boolean isFree(LocalDate from, LocalDate to){
         List<LocalDate> days = Utils.getDatesBetween(from, to);
         for(LocalDate day : days){
-            if(isBooked(day))
+            if(isBookedIn(day))
                 return false;
         }
         return true;

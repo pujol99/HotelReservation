@@ -1,4 +1,9 @@
-package Classes;
+package Utils;
+
+import Classes.Hotel;
+import Classes.Reservation;
+import Classes.Room;
+import Utils.Utils;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

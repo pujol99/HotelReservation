@@ -32,15 +32,18 @@ public class Hotel {
         Room room = getHotelRoom(client.getGroupSize(), from, to, client.isUrgent());
         if(room == null)
             return null;
+
         Reservation r = new Reservation(from, to, client, room);
         client.setReservation(r);
+        r.computePrice();
         reservations.add(r);
+
         return room;
     }
 
     public void createRooms(int roomSize){
         for(int i = 0; i < roomSize; i++)
-            rooms.add(new Room(rand.nextInt(MAX_CAPACITY-MIN_CAPACITY+1)+2, i, Classes.RoomType.BASIC));
+            rooms.add(new Room(rand.nextInt(MAX_CAPACITY-MIN_CAPACITY+1)+2, i, Enums.RoomType.BASIC));
 
     }
 
@@ -72,13 +75,13 @@ public class Hotel {
         for(Room room : rooms){
             System.out.print(room.getRoomNumber());
             System.out.println("\tCapacity: " + room.getCapacity());
-            System.out.println("\tBooked now: " + room.currentlyBooked());
+            System.out.println("\tBooked now: " + room.isBookedIn(LocalDate.now()));
         }
     }
 
     public void showBookedRooms(){
         for(Room room : rooms){
-            if(room.currentlyBooked() == false)
+            if(room.isBookedIn(LocalDate.now()) == false)
                 continue;
             System.out.print(room.getRoomNumber());
             System.out.println("\tCapacity: " + room.getCapacity());
