@@ -32,8 +32,6 @@ public class Reservation {
         return dates;
     }
 
-
-
     //getters
     public LocalDate getFrom() {
         return from;

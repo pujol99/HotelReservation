@@ -16,9 +16,19 @@ public class Main {
                 "244X");
         me.setContactInfo(contactInfo);
 
+        Client me2 = new Client(3);
+        ContactInfo contactInfo2 = new ContactInfo(
+                "743578357",
+                "Elsa Pujol Comet",
+                "08027",
+                "244X");
+        me2.setContactInfo(contactInfo2);
+
         Room room = myHotel.bookRoom(me, LocalDate.now(), LocalDate.now().plusDays(3));
-        if(room != null){
-            System.out.println(room.currentClient().getContactInfo().getFullName());
-        }
+        Room room2 = myHotel.bookRoom(me2, LocalDate.now().plusDays(5), LocalDate.now().plusDays(8));
+
+        if(room != null)
+            room.showNextDays(10);
     }
+
 }

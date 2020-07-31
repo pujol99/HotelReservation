@@ -25,7 +25,7 @@ public class Hotel {
 
     public Room bookRoom(Client client, LocalDate from, LocalDate to){
         //make reservation for client with no reservation
-        Room room = getHotelRoom(client.getGroupSize());
+        Room room = getHotelRoom(client.getGroupSize(), from, to);
         if(room == null)
             return null;
         client.setReservation(new Reservation(from, to, client, room));
@@ -38,9 +38,10 @@ public class Hotel {
 
     }
 
-    public Room getHotelRoom(int capacity){
+    public Room getHotelRoom(int capacity, LocalDate from, LocalDate to){
+        //TODO: not if there is someone now --> will be someone in the booking days
         for(Room room : rooms){
-            if(room.getCapacity() == capacity)
+            if(room.getCapacity() == capacity && room.isFree(from, to))
                 return room;
         }
         return null;
@@ -60,7 +61,7 @@ public class Hotel {
                 continue;
             System.out.print(room.getRoomNumber());
             System.out.println("\tCapacity: " + room.getCapacity());
-            System.out.println("\tBooked by: " + room.currentClient());
+            System.out.println("\tBooked by: " + room.currentClient().getContactInfo().getFullName());
         }
     }
 
