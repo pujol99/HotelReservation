@@ -17,4 +17,12 @@ public class Utils {
 
         return dates;
     }
+
+    public static void print(String content){
+        System.out.print(content);
+    }
+
+    public static void printnl(String content){
+        System.out.println(content);
+    }
 }

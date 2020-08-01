@@ -21,12 +21,6 @@ public class Hotel {
         createRooms(roomSize);
     }
 
-    public Hotel(){
-        rooms = new ArrayList<>();
-        clients = new ArrayList<>();
-        reservations = new ArrayList<>();
-    }
-
     public Room bookRoom(Client client, LocalDate from, LocalDate to){
         //make reservation for client with no reservation
         Room room = getHotelRoom(client.getGroupSize(), from, to, client.isUrgent());
@@ -87,6 +81,16 @@ public class Hotel {
             System.out.println("\tCapacity: " + room.getCapacity());
             System.out.println("\tBooked by: " + room.currentClient().getContactInfo().getFullName());
         }
+    }
+
+    public String toString(){
+        String content = "";
+        for(Room room : rooms){
+            content += "------------------------------" + "\n";
+            content += "\tCapacity: " + room.getCapacity() + " | Id: " + room.getRoomNumber() + "\n";
+            content += room.toString(5) + "\n";
+        }
+        return content;
     }
 
     public List<Room> getRooms() {

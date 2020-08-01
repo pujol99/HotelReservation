@@ -34,8 +34,7 @@ public class Reservation {
     }
 
     public String toString(){
-        return "Reservation from: " + client.getContactInfo().getFullName() + "\n" +
-            "From: " + from.toString() + " to: " + to.toString() + "\n" +
+        return "From: " + from.toString() + " to: " + to.toString() + "\n" +
             "With a price of: " + price + "\n" +
             "For room: " + room.getRoomNumber() + "\n";
     }

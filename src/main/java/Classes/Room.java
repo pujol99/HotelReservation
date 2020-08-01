@@ -53,6 +53,20 @@ public class Room {
         }
     }
 
+    public String toString(int nDays){
+        String content = "";
+        for(int i = 0; i < nDays; i++){
+            LocalDate day = LocalDate.now().plusDays(i);
+            content += day.toString() + ": ";
+            if(isBookedIn(day)){
+                content += reservations.get(day).getClient().getContactInfo().getFullName() + "\n";
+            }else{
+                content += "Free" + "\n";
+            }
+        }
+        return content;
+    }
+
     public boolean isFree(LocalDate from, LocalDate to){
         List<LocalDate> days = Utils.getDatesBetween(from, to);
         for(LocalDate day : days){

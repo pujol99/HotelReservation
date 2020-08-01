@@ -23,6 +23,11 @@ public class Client {
             room.cancelBooking(day);
     }
 
+    public String toString(){
+        return "Client: " + getContactInfo().getFullName() + "\n" +
+                "with reservation: " + reservation.toString() + "\n";
+    }
+
     public ContactInfo getContactInfo() {
         return contactInfo;
     }
