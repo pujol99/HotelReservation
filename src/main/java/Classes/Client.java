@@ -24,6 +24,9 @@ public class Client {
     }
 
     public String toString(){
+        if (reservation == null)
+            return "Client: {" + getContactInfo().getFullName() + ", " + getContactInfo().getPhoneNumber() + "}\n";
+
         return "Client: " + getContactInfo().getFullName() + "\n" +
                 "with reservation: " + reservation.toString() + "\n";
     }

@@ -101,6 +101,10 @@ public class Hotel {
         return clients;
     }
 
+    public void addClient(Client c){
+        clients.add(c);
+    }
+
     public List<Reservation> getReservations() {
         return reservations;
     }
